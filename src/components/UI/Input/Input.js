@@ -48,7 +48,7 @@ const Input = (props) => {
 						onChange={props.changed}
 						{...props.elementConfig} 
 						value={props.value}/>;
-	}
+	} // switch
 
 		let validationErrorMessage = null;
 		if (props.invalid && props.touched) {
