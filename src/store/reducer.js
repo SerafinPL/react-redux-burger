@@ -1,7 +1,13 @@
-import * as actions from './actions';
+import * as actionTypes from './actions';
 
-const reducer = (state, action) => {
+const initialState = {
 
-}
+		ingredients: null,
+		totalPrice: 4,
+};
+
+const reducer = (state = initialState, action) => {
+
+};
 
 export default reducer;
