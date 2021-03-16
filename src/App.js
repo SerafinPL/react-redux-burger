@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, useState, useEffect} from 'react' ;
 
-function App() {
+import Layout from './hoc/Layout/Layout';
+import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
+import Checkout from './containers/Checkout/Checkout';
+import OrdersPage from './containers/OrdersPage/OrdersPage';
+import {Route,BrowserRouter, Switch} from 'react-router-dom';
+
+
+const App = () => {
+
+	const [testState, setTestState] = useState(true);
+
+	useEffect(() =>{	//it is componentDidMount
+		setTimeout(() => {
+			setTestState(false)
+		},5000);
+		//return () => {} componentWillUnmount
+	}, [] );  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      	<BrowserRouter>
+	      	<Layout>
+      	
+	      		<Switch>
+		      		
+		        	{/*<BurgerBuilder/>*/}
+		        	{/*<Checkout />*/}
+		        	<Route path='/orders' exact component={OrdersPage} />
+		        	<Route path='/checkout' component={Checkout} />
+		        	<Route path='/' exact component={BurgerBuilder} />
+	        	</Switch>
+        	</Layout>
+        </BrowserRouter>
+      
     </div>
   );
 }
