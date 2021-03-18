@@ -24,6 +24,7 @@ class BurgerBuilder extends Component {
 	// 	this.state = {...}
 	// }
 	componentDidMount() {
+			this.props.ReduxSetIngredients();
 		// axios.get('/ingredients.json')
 		// .then(response => {
 		// 		this.setState({ingredients: response.data});
@@ -150,8 +151,9 @@ const mapDispachToProps = dispach => {
 	return{
 		ReduxOnIgredientAdded: (ingName) => dispach( actionCreators.addIngerdient(ingName) ),
 		//{type: actionTypes.ADD_INGREDIENT, ingredientName: ingName}),
-		ReduxOnIgredientRemoved: (ingName) => dispach( actionCreators.removeIngerdient(ingName) )
+		ReduxOnIgredientRemoved: (ingName) => dispach( actionCreators.removeIngerdient(ingName) ),
 		//{type: actionTypes.REMOVE_INGREDIENT, ingredientName: ingName})
+		ReduxSetIngredients: () => dispach( actionCreators.initIngridients() )
 	};
 };
 

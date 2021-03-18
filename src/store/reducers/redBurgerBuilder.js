@@ -38,6 +38,22 @@ const reducer = (state = initialState, action) => {
 					[action.ingredientName]: state.ingredients[action.ingredientName] - 1
 				},
 				totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName]
+			};
+		case actionTypes.SET_INGREDIENTS:
+
+			let ingrARR = Object.keys(action.ing);
+				let price = state.totalPrice;
+				ingrARR.map(val =>{
+					
+					price += action.ing[val] * INGREDIENT_PRICES[val];
+
+				}) 
+			return{
+				...state,
+				ingredients: {
+					...action.ing
+				},
+				totalPrice: price
 			};	
 		default: 
 		return state;
