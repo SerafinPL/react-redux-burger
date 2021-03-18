@@ -6,12 +6,12 @@ import reportWebVitals from './reportWebVitals';
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducer from './store/reducers/redBurgerBuilder';
+import burgerBuilderReducer from './store/reducers/redBurgerBuilder';
 //import thunk from 'redux-thunk';
 
 
 
-const storeBox = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() );
+const storeBox = createStore(burgerBuilderReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() );
 
 
 

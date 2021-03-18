@@ -12,7 +12,8 @@ import axios from '../../axios-orders';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 
 import { connect } from 'react-redux';
-import * as actionTypes from '../../store/actions/actionTypes';
+//import * as actionTypes from '../../store/actions/actionTypes';
+import * as actionCreators from '../../store/actions/acIndex';
 
 
 
@@ -147,8 +148,10 @@ const mapStateToProps = state => {
 
 const mapDispachToProps = dispach => {
 	return{
-		ReduxOnIgredientAdded: (ingName) => dispach({type: actionTypes.ADD_INGREDIENT, ingredientName: ingName}),
-		ReduxOnIgredientRemoved: (ingName) => dispach({type: actionTypes.REMOVE_INGREDIENT, ingredientName: ingName})
+		ReduxOnIgredientAdded: (ingName) => dispach( actionCreators.addIngerdient(ingName) ),
+		//{type: actionTypes.ADD_INGREDIENT, ingredientName: ingName}),
+		ReduxOnIgredientRemoved: (ingName) => dispach( actionCreators.removeIngerdient(ingName) )
+		//{type: actionTypes.REMOVE_INGREDIENT, ingredientName: ingName})
 	};
 };
 
