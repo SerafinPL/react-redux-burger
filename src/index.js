@@ -6,9 +6,14 @@ import reportWebVitals from './reportWebVitals';
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducer from './store/reducer';
+import reducer from './store/reducers/redBurgerBuilder';
+//import thunk from 'redux-thunk';
 
-const storeBox = createStore(reducer);
+
+
+const storeBox = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() );
+
+
 
 ReactDOM.render(
   <Provider store={storeBox}>
