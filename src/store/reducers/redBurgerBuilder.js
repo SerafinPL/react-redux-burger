@@ -2,13 +2,14 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
 
-		ingredients: {
-			salad: 	0,
-			cheese: 0,
-			meat: 	0,
-			bacon: 	0
-		},
+		ingredients: null,//{
+		// 	// salad: 	0,
+		// 	// cheese: 0,
+		// 	// meat: 	0,
+		// 	// bacon: 	0
+		// },
 		totalPrice: 4,
+		error: false
 };
 
 const INGREDIENT_PRICES = {
@@ -42,11 +43,11 @@ const reducer = (state = initialState, action) => {
 		case actionTypes.SET_INGREDIENTS:
 
 			let ingrARR = Object.keys(action.ing);
-				let price = state.totalPrice;
+				let price = 4;
 				ingrARR.map(val =>{
 					
 					price += action.ing[val] * INGREDIENT_PRICES[val];
-
+					return true;
 				}) 
 			return{
 				...state,
@@ -54,7 +55,16 @@ const reducer = (state = initialState, action) => {
 					...action.ing
 				},
 				totalPrice: price
-			};	
+			};
+		case actionTypes.FETCH_INGREDIENTS_FAIL:
+			return{
+				...state,
+				ingredients: {
+					...state
+				},
+				error: true
+			}
+
 		default: 
 		return state;
 		

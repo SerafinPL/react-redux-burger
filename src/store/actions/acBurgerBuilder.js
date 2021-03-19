@@ -22,33 +22,19 @@ export const initIngridients = () => {
 	return dispatch => {
 		axios.get('/ingredients.json')
 		.then(response => {
-			dispatch (setIngredients(response.data));
-		})
+			dispatch( setIngredients(response.data) );
+		}).catch(error => {
+			dispatch(fetchIngredientsFali());
+		});
 	}
-}
+};
+
+export const fetchIngredientsFali = () => {
+	return {
+		type: actionTypes.FETCH_INGREDIENTS_FAIL
+	};
+};
 	
-// 				this.setState({ingredients: response.data});
-
-// 				let ingrARR = Object.keys(this.state.ingredients);
-// 				let price = this.state.totalPrice;
-// 				ingrARR.map(val =>{
-					
-// 					price += this.state.ingredients[val] * INGREDIENT_PRICES[val];
-
-// 				})
-
-// 				// let price = this.state.ingredients.salad * INGREDIENT_PRICES.salad +
-// 				// 		this.state.ingredients.cheese * INGREDIENT_PRICES.cheese +
-// 				// 		this.state.ingredients.meat * INGREDIENT_PRICES.meat +
-// 				// 		this.state.ingredients.bacon * INGREDIENT_PRICES.bacon + this.state.totalPrice;
-// 				this.setState({totalPrice: price});
-// 				this.setState({purchasable: price > 4});
-
-// 		})
-// 		.catch(error => {
-// 			this.setState({error: true});
-// 		});
-// };
 
 export const setIngredients = (ingr) => {
 	return {
