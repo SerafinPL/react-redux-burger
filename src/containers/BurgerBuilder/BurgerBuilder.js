@@ -96,7 +96,7 @@ class BurgerBuilder extends Component {
 		}
 
 		let orderSummary = null; 
-
+		
 		let burger = this.props.ReduxError ? <p style={{textAlign: 'center'}}>Składników nie da się załadować</p> : <Spinner />
 
 		if (this.props.ReduxIngs){

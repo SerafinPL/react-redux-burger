@@ -51,13 +51,22 @@ const reducer = (state = initialState, action) => {
 				}) 
 			return{
 				...state,
-				...action.ing,
+				//ingredients: action.ing, // kolejność z serwera
+				// własna kolejność
+				ingredients: {
+					salad: action.ing.salad,
+					bacon: action.ing.bacon,
+					cheese: action.ing.cheese,
+					meat: action.ing.meat
+				},
+				
 				error: false,
 				totalPrice: price
 			};
 		case actionTypes.FETCH_INGREDIENTS_FAIL:
 			return{
 				...state,
+				
 				error: true
 			}
 
