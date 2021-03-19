@@ -2,7 +2,8 @@
 export {
 	addIngerdient,
 	removeIngerdient,
-	initIngridients
+	initIngridients,
+	
 } from './acBurgerBuilder';
 
 export {

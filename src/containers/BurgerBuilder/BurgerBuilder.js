@@ -56,7 +56,7 @@ class BurgerBuilder extends Component {
 		//purchasable: false,
 		purchasing: false,
 		//loading: false,
-		error: false
+		//error: false
 	}
 
 
@@ -100,6 +100,8 @@ class BurgerBuilder extends Component {
 		let burger = this.props.ReduxError ? <p style={{textAlign: 'center'}}>Składników nie da się załadować</p> : <Spinner />
 
 		if (this.props.ReduxIngs){
+	
+
 			burger =(
 				<Aux>
 					<Burger ingredients={this.props.ReduxIngs}/>
@@ -119,8 +121,14 @@ class BurgerBuilder extends Component {
 							purchaseContinue={this.continueHandler}
 							price={this.props.ReduxTotPrice}
 						/>;
+
+				
 		}
+		 // if (this.state.loading) {
+		 // 	orderSummary = <Spinner />
+		 // }
 		
+
 		return(
 				<Aux>
 					<Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
