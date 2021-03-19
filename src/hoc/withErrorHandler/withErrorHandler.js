@@ -11,7 +11,7 @@ const withErrorHandler = ( WrappedComponent, axios ) => {
             error: null
         }
 
-        componentDidMount () { // was a componentWillMount
+        componentWillMount () { // was a componentWillMount
             this.reqInterceptor = axios.interceptors.request.use( req => {
                 this.setState( { error: null } );
                 return req;
@@ -61,20 +61,21 @@ export default withErrorHandler;
 
 // const withErrorHandler = (WrappedComponent, axios) => {
 // 	return (props) => {
-// 		const [errorState, useErrorState] = useState(null);
+
+// 		const [errorState, useErrorState] = useState(0);
 
 // 		useEffect(() => {
-// 			let reqInterceptor = axios.interceptors.request.use(req => {
+// 			const reqInterceptor = axios.interceptors.request.use(req => {
 // 				useErrorState(null);
 // 				return req;
 // 			});
-// 			let resInterceptor = axios.interceptors.response.use(res => res, error => {
+// 			const resInterceptor = axios.interceptors.response.use(res => res, error => {
 // 				useErrorState(error);
-				
+// 				console.log('error', error.message, 'hokk', errorState );
 // 			});
 
 // 			console.log('useEffect', reqInterceptor, resInterceptor );
-
+// 			console.log( 'hokk', errorState );
 // 			return () => {
 // 				console.log('useEffect Return', reqInterceptor, resInterceptor );
 // 				axios.interceptors.request.eject(reqInterceptor);
@@ -82,7 +83,7 @@ export default withErrorHandler;
 // 				console.log('useEffect Return2', reqInterceptor, resInterceptor );
 // 			};
 
-// 		},[]);
+// 		});
 
 // 		const showing = errorState ? true : false;
 

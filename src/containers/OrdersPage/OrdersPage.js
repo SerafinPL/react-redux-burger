@@ -78,7 +78,7 @@ const OrdersPage = (props) => {
 							ingredients={order.ingredients}
 							price={order.price}
 						/>
-					))}
+					))
 				}
 				
 				
