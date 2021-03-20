@@ -11,7 +11,7 @@ export const purchaseBurgerStart = (orderData) => {
 					// this.setState({loading: false});
 					// this.props.history.push('/');
 					console.log(response.data)
-					dispatch( purchaseBurgerSuccess(response.data, orderData) );
+					dispatch( purchaseBurgerSuccess(response.data.name, orderData) );
 				} )
 				.catch(error => {
 					// this.setState({loading: false});
