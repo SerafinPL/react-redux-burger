@@ -5,7 +5,7 @@ import axios from '../../axios-orders';
 
 export const purchaseBurgerStart = (orderData) => {
 	return dispatch => {
-			
+			dispatch( startLoading() );
 			axios.post('/orders.json', orderData)
 				.then(response => {
 					// this.setState({loading: false});

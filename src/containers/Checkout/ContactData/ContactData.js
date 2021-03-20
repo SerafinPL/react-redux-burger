@@ -110,7 +110,7 @@ class ContactData extends Component {
 							
 						}
 					},//orderForm
-		loading: false,
+		//loading: false,
 		formIsValid: false,
 
 	}
@@ -118,7 +118,7 @@ class ContactData extends Component {
 	orderHandler = (event) => {
 		event.preventDefault();
 			//this.setState({loading: true});
-			this.props.onOrderStart();
+			
 			const dataForm = {};
 			for (let formElementId in this.state.orderForm){
 				dataForm[formElementId] = this.state.orderForm[formElementId].value;
@@ -219,7 +219,7 @@ class ContactData extends Component {
 			
 					);
 
-		if (this.state.loading){
+		if (this.props.loading){
 			form = (<Spinner/>);
 		}
 
@@ -236,14 +236,15 @@ class ContactData extends Component {
 const mapStateToProps = state => {
 	return{
 		ReduxIngs: state.ingredients,
-		ReduxTotPrice: state.totalPrice
+		ReduxTotPrice: state.totalPrice,
+		ReduxLoading: state.loading
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return{
 		onOrderBurger: (orderData) => dispatch( actionCreators.purchaseBurgerStart(orderData) ),
-		onOrderStart: () => dispatch( actionCreators.startLoading() ),
+		
 	};
 };
 

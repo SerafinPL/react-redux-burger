@@ -2,7 +2,7 @@ import React from 'react';
 
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
 import ContactData from './ContactData/ContactData';
-import {Route} from 'react-router-dom';
+import {Route, Redirect} from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -17,20 +17,24 @@ const Checkout = (props) => {
 		props.history.replace('/checkout/contact-data');
 	}
 
-	return(
-		<div>
-			<CheckoutSummary 
-				ingredients={props.ReduxIngs} 
-				CheckoutCancel={CheckoutCancelHandler} 
-				CheckoutContinue={CheckoutContinueHandler}
-			/>
-			<Route 
-				path={props.match.path + '/contact-data'} 
-				component={ContactData}
-				//render={(props) => (<ContactData ingredients={props.ReduxIngs} price={props.ReduxTotPrice} {...props}/>)} 
-			/>
-		</div>
-		);
+	let summary = <Redirect to='/' />
+	if (props.ReduxIngs) {
+		summary =( 
+				<div>
+					<CheckoutSummary 
+						ingredients={props.ReduxIngs} 
+						CheckoutCancel={CheckoutCancelHandler} 
+						CheckoutContinue={CheckoutContinueHandler}
+					/>
+					<Route 
+						path={props.match.path + '/contact-data'} 
+						component={ContactData}
+						//render={(props) => (<ContactData ingredients={props.ReduxIngs} price={props.ReduxTotPrice} {...props}/>)} 
+					/>
+				</div>
+				) // let summary
+	}
+	return summary;
 }
 
 const mapStateToProps = state => {
