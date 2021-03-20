@@ -15,7 +15,7 @@ const App = () => {
 		setTimeout(() => {
 			setTestState(false)
 		},5000);
-		//return () => {} componentWillUnmount
+		//return () => {} //componentWillUnmount
 	}, [] );  
 
   return (

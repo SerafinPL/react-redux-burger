@@ -219,7 +219,7 @@ class ContactData extends Component {
 			
 					);
 
-		if (this.props.loading){
+		if (this.props.ReduxLoading){
 			form = (<Spinner/>);
 		}
 
@@ -235,9 +235,9 @@ class ContactData extends Component {
 	
 const mapStateToProps = state => {
 	return{
-		ReduxIngs: state.ingredients,
-		ReduxTotPrice: state.totalPrice,
-		ReduxLoading: state.loading
+		ReduxIngs: state.burgerBuilder.ingredients,
+		ReduxTotPrice: state.burgerBuilder.totalPrice,
+		ReduxLoading: state.order.loading
 	};
 };
 

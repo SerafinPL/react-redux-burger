@@ -39,7 +39,7 @@ const Checkout = (props) => {
 
 const mapStateToProps = state => {
 	return{
-		ReduxIngs: state.ingredients,
+		ReduxIngs: state.burgerBuilder.ingredients,
 		
 	};
 };

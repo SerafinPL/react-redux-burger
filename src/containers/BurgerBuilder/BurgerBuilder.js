@@ -96,7 +96,7 @@ class BurgerBuilder extends Component {
 		}
 
 		let orderSummary = null; 
-		
+
 		let burger = this.props.ReduxError ? <p style={{textAlign: 'center'}}>Składników nie da się załadować</p> : <Spinner />
 
 		if (this.props.ReduxIngs){
@@ -142,9 +142,9 @@ class BurgerBuilder extends Component {
 
 const mapStateToProps = state => {
 	return{
-		ReduxIngs: state.ingredients,
-		ReduxTotPrice: state.totalPrice,
-		ReduxError: state.error
+		ReduxIngs: state.burgerBuilder.ingredients,
+		ReduxTotPrice: state.burgerBuilder.totalPrice,
+		ReduxError: state.burgerBuilder.error
 	};
 };
 

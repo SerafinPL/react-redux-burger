@@ -16,7 +16,7 @@ const reducer = (state = initState, action ) => {
 
 			//action.orderId
 			//action.orderData
-			newOrder = {
+			const newOrder = {
 				id: action.orderId,
 				...action.orderData
 			}
@@ -28,7 +28,8 @@ const reducer = (state = initState, action ) => {
 		case actionTypes.PURCHASE_BURGER_FAIL :
 			return{
 				...state,
-				//action.error
+				loading: false,
+				error: action.error
 			};
 		case actionTypes.LOADING_START :
 			return{

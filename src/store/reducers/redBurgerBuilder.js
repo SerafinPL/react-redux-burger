@@ -31,6 +31,7 @@ const reducer = (state = initialState, action) => {
 				},
 				totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName]
 			};
+		
 		case actionTypes.REMOVE_INGREDIENT: 
 			return{
 				...state,
@@ -40,6 +41,7 @@ const reducer = (state = initialState, action) => {
 				},
 				totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName]
 			};
+
 		case actionTypes.SET_INGREDIENTS:
 
 			let ingrARR = Object.keys(action.ing);
@@ -49,6 +51,7 @@ const reducer = (state = initialState, action) => {
 					price += action.ing[val] * INGREDIENT_PRICES[val];
 					return true;
 				}) 
+
 			return{
 				...state,
 				//ingredients: action.ing, // kolejność z serwera
@@ -59,14 +62,13 @@ const reducer = (state = initialState, action) => {
 					cheese: action.ing.cheese,
 					meat: action.ing.meat
 				},
-				
 				error: false,
 				totalPrice: price
 			};
+
 		case actionTypes.FETCH_INGREDIENTS_FAIL:
 			return{
 				...state,
-				
 				error: true
 			}
 
