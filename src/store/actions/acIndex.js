@@ -9,4 +9,5 @@ export {
 export {
 	purchaseBurgerStart,
 	purchaseInit,
+	fetchOrders
 } from './acOrder';

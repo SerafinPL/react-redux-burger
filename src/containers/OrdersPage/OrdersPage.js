@@ -5,37 +5,39 @@ import axios from '../../axios-orders';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
+import {connect} from 'react-redux';
+import * as actionCreators from '../../store/actions/acIndex';
+
 // class OrdersPage extends Component{
 
 const OrdersPage = (props) => {
-	const [loadingHook, loadingSetHook] = useState(true);
-	const [ordersHook, ordersSetHook] = useState([]);
+	// const [loadingHook, loadingSetHook] = useState(true);
+	// const [ordersHook, ordersSetHook] = useState([]);
 	
 	// HOOK BASE
 
-	useEffect(() => {
-		
-		axios.get('/orders.json')
-			.then(response => {
-				const fatchedOrders = [];
-				for (let key in response.data){
-					fatchedOrders.push({
-						...response.data[key],
-						id: key
+	 useEffect(() => {
 
-					});
-				}
+		props.onFetchOrders();
+	// 	axios.get('/orders.json')
+	// 		.then(response => {
+	// 			const fatchedOrders = [];
+	// 			for (let key in response.data){
+	// 				fatchedOrders.push({
+	// 					...response.data[key],
+	// 					id: key
 
+	// 				});
+	// 			}
+	// 			ordersSetHook(fatchedOrders);
 				
-				ordersSetHook(fatchedOrders);
-				
-				loadingSetHook(false);
-			})
-			.catch(error => {
-				loadingSetHook(false);
-			});
+	// 			loadingSetHook(false);
+	// 		})
+	// 		.catch(error => {
+	// 			loadingSetHook(false);
+	// 		});
 
-	},[]); 
+	 },[]); 
 	// CLASS BASE
 	// state ={
 	// 	orders: [],
@@ -62,7 +64,7 @@ const OrdersPage = (props) => {
 
 	// render(){
 	let loading = null;
-	if (loadingHook) {
+	if (props.ReduxLoading) {
 		loading = <Spinner/>;
 	}
 	  
@@ -72,7 +74,7 @@ const OrdersPage = (props) => {
 				{loading}
 				{//this.state.orders.map(order => (
 					
-					ordersHook.map(order => (
+					props.ReduxOrders.map(order => (
 						<Order 
 							key={order.id}
 							ingredients={order.ingredients}
@@ -90,4 +92,18 @@ const OrdersPage = (props) => {
 
 }
 
-export default withErrorHandler(OrdersPage, axios);
+const mapStateToProps = state => {
+	return{
+		ReduxError: state.order.error,
+		ReduxLoading: state.order.loading,
+		ReduxOrders: state.order.orders
+	};
+};
+
+const mapDispachToProps = dispach => {
+	return{
+		onFetchOrders: () => dispach(actionCreators.fetchOrders()) 
+	};
+};
+
+export default connect(mapStateToProps, mapDispachToProps)( withErrorHandler(OrdersPage, axios) );
