@@ -82,7 +82,9 @@ class BurgerBuilder extends Component {
 
 	
 	continueHandler = () => {
+		this.props.RedoxOnInitPurchase();
 		this.props.history.push('/checkout');
+
 	}
 
 	render(){
@@ -150,11 +152,13 @@ const mapStateToProps = state => {
 
 const mapDispachToProps = dispach => {
 	return{
+		
 		ReduxOnIgredientAdded: (ingName) => dispach( actionCreators.addIngerdient(ingName) ),
 		//{type: actionTypes.ADD_INGREDIENT, ingredientName: ingName}),
 		ReduxOnIgredientRemoved: (ingName) => dispach( actionCreators.removeIngerdient(ingName) ),
 		//{type: actionTypes.REMOVE_INGREDIENT, ingredientName: ingName})
-		ReduxSetIngredients: () => dispach( actionCreators.initIngridients() )
+		ReduxSetIngredients: () => dispach( actionCreators.initIngridients() ),
+		RedoxOnInitPurchase: () => dispach( actionCreators.purchaseInit() )
 	};
 };
 

@@ -10,13 +10,7 @@ import * as actionsCreators from '../../store/actions/acIndex';
 
 const Checkout = (props) => {
 
-	// componentDidMount() {
-
-	// }
-
-	useEffect(()=>{
-		props.onInitPurchase();
-	}, []);
+	
 
 	const CheckoutCancelHandler = () => {
 		props.history.goBack();
@@ -59,11 +53,7 @@ const mapStateToProps = state => {
 	};
 };
 
-const mapDispatchToProps = dispach => {
-	return{
-		onInitPurchase: () => dispach( actionsCreators.purchaseInit() ),
-	};
-};
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
+
+export default connect(mapStateToProps)(Checkout);
