@@ -20,7 +20,7 @@ export const removeIngerdient = (ingName) => {
 export const initIngridients = () => {
 
 	return dispatch => {
-		axios.get('/ingredients')
+		axios.get('/ingredients.json')
 		.then(response => {
 			dispatch( setIngredients(response.data) );
 		}).catch(error => {
