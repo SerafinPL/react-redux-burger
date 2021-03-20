@@ -28,7 +28,7 @@ export const purchaseBurgerSuccess = (id, orderData) => {
 		orderId: id,
 		orderData: orderData
 
-	}
+	};
 };
 
 export const purchaseBurgerFail = (error) => {
@@ -41,5 +41,11 @@ export const purchaseBurgerFail = (error) => {
 export const startLoading = () => {
 	return{
 		type: actionTypes.LOADING_START
-	}
-}
+	};
+};
+
+export const purchaseInit = () => {
+	return{
+		type: actionTypes.PURCHASE_INIT
+	};
+};
