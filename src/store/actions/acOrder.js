@@ -37,3 +37,9 @@ export const purchaseBurgerFail = (error) => {
 		error: error
 	}
 };
+
+export const startLoading = () => {
+	return{
+		type: actionTypes.LOADING_START
+	}
+}

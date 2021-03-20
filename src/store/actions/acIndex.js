@@ -8,5 +8,5 @@ export {
 
 export {
 	purchaseBurgerStart,
-	
+	startLoading
 } from './acOrder';

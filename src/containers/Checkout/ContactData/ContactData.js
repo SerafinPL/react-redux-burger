@@ -118,7 +118,7 @@ class ContactData extends Component {
 	orderHandler = (event) => {
 		event.preventDefault();
 			//this.setState({loading: true});
-
+			this.props.onOrderStart();
 			const dataForm = {};
 			for (let formElementId in this.state.orderForm){
 				dataForm[formElementId] = this.state.orderForm[formElementId].value;
@@ -243,6 +243,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 	return{
 		onOrderBurger: (orderData) => dispatch( actionCreators.purchaseBurgerStart(orderData) ),
+		onOrderStart: () => dispatch( actionCreators.startLoading() ),
 	};
 };
 
