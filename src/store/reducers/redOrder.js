@@ -88,8 +88,7 @@ const reducer = (state = initState, action ) => {
 			// 	loading: false,
 			// 	error: action.error
 			// };
-		default: 
-		return state;
+		default: return state;
 	}//switch
 };
 
