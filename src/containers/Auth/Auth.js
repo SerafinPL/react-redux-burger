@@ -66,7 +66,7 @@ class Auth extends Component {
 			<div>
 				<form>
 					{form}
-					<Button type='Success'>ZAREJESTRUJ</Button>
+					<Button btnType='Success'>ZAREJESTRUJ</Button>
 
 				</form>
 			</div>
