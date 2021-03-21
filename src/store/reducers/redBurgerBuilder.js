@@ -22,18 +22,50 @@ const INGREDIENT_PRICES = {
 	bacon: 0.7
 }
 
+const addIngredient = (state, action) => {
+	const updatedIngr = {[action.ingredientName]: state.ingredients[action.ingredientName] + 1};
+	const updatedIngredients = updateObject(state.ingredients, updatedIngr);
+	const updatedState ={
+		ingredients : updatedIngredients, 
+		totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName]
+	};
+	return updateObject(state, updatedState);
+};
+
+const removeIngredient = (state, action) => {
+	const updated_Ingr = {[action.ingredientName]: state.ingredients[action.ingredientName] - 1};
+	const updated_Ingredients = updateObject(state.ingredients, updated_Ingr);
+	const updated_State ={
+		ingredients : updated_Ingredients, 
+		totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName]
+	};
+	return updateObject(state, updated_State);
+};
+
+const setIngredients = (state, action) => {
+	let ingrARR = Object.keys(action.ing);
+		let price = 4;
+		ingrARR.map(val =>{
+			
+			price += action.ing[val] * INGREDIENT_PRICES[val];
+			return true;
+		}) 
+	return updateObject(state, {
+		ingredients: {
+			salad: action.ing.salad,
+			bacon: action.ing.bacon,
+			cheese: action.ing.cheese,
+			meat: action.ing.meat
+		},
+		error: false,
+		totalPrice: price
+	});
+};
+
 const reducer = (state = initialState, action) => {
 
 	switch (action.type){
-		case actionTypes.ADD_INGREDIENT:
-			const updatedIngr = {[action.ingredientName]: state.ingredients[action.ingredientName] + 1};
-			const updatedIngredients = updateObject(state.ingredients, updatedIngr);
-			const updatedState ={
-				ingredients : updatedIngredients, 
-				totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName]
-			};
-			return updateObject(state, updatedState);
-
+		case actionTypes.ADD_INGREDIENT: return addIngredient(state, action);
 			// return{
 			// 	...state,
 			// 	ingredients: {
@@ -43,14 +75,8 @@ const reducer = (state = initialState, action) => {
 			// 	totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName]
 			// };
 
-		case actionTypes.REMOVE_INGREDIENT: 
-			const updated_Ingr = {[action.ingredientName]: state.ingredients[action.ingredientName] - 1};
-			const updated_Ingredients = updateObject(state.ingredients, updated_Ingr);
-			const updated_State ={
-				ingredients : updated_Ingredients, 
-				totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName]
-			};
-			return updateObject(state, updated_State);
+		case actionTypes.REMOVE_INGREDIENT: return removeIngredient(state, action);
+			
 
 			// return{
 			// 	...state,
@@ -61,25 +87,9 @@ const reducer = (state = initialState, action) => {
 			// 	totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName]
 			// };
 
-		case actionTypes.SET_INGREDIENTS:
+		case actionTypes.SET_INGREDIENTS: return setIngredients(state, action);
 
-			let ingrARR = Object.keys(action.ing);
-				let price = 4;
-				ingrARR.map(val =>{
-					
-					price += action.ing[val] * INGREDIENT_PRICES[val];
-					return true;
-				}) 
-			return updateObject(state, {
-				ingredients: {
-					salad: action.ing.salad,
-					bacon: action.ing.bacon,
-					cheese: action.ing.cheese,
-					meat: action.ing.meat
-				},
-				error: false,
-				totalPrice: price
-			});
+			
 			// return{
 			// 	...state,
 			// 	//ingredients: action.ing, // kolejność z serwera
