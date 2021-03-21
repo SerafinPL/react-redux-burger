@@ -17,8 +17,6 @@ export const purchaseBurgerStart = (orderData) => {
 					// this.setState({loading: false});
 					dispatch( purchaseBurgerFail(error) );
 				} );
-
-		
 	};
 };
 

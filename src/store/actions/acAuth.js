@@ -41,6 +41,3 @@ export const auth = (email, password) => {
 	};
 };
 
-// https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAajveW_nh7r6fSr-xjR3tmVR4uA9zhri0 
-
-// API KEY AIzaSyAajveW_nh7r6fSr-xjR3tmVR4uA9zhri0 
