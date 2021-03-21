@@ -11,3 +11,7 @@ export {
 	purchaseInit,
 	fetchOrders
 } from './acOrder';
+
+export {
+	auth
+} from './acAuth';
