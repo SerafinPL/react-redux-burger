@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 
+import classes from './Auth.module.css';
+
 class Auth extends Component {
 
 	state = {
@@ -58,12 +60,13 @@ class Auth extends Component {
 				shouldValidate={formElement.config.validation}
 				touched={formElement.config.touched}
 				changed={(event) => this.inputChangeHandler(event, formElement.id)}
+				label={formElement.config.elementConfig.type == 'email' ? 'E-mail' : 'Hasło'}
 			/>
 
 		));
 
 		return(
-			<div>
+			<div className={classes.Auth}>
 				<form>
 					{form}
 					<Button btnType='Success'>ZAREJESTRUJ</Button>

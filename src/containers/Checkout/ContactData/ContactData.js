@@ -18,6 +18,7 @@ class ContactData extends Component {
 			orderForm :{
 						name: {
 							elementType: 'input',
+							label: 'Nazwa',
 							elementConfig: {
 								type: 'text',
 								placeholder: 'Twoje Imię'
@@ -31,6 +32,7 @@ class ContactData extends Component {
 						},
 						street: {
 							elementType: 'input',
+							label: 'Ulica',
 							elementConfig: {
 								type: 'text',
 								placeholder: 'Ulica'
@@ -44,6 +46,7 @@ class ContactData extends Component {
 						},
 						zipCode: {
 							elementType: 'input',
+							label: 'Kod pocztowy',
 							elementConfig: {
 								type: 'text',
 								placeholder: 'Kod-pocztowy'
@@ -59,6 +62,7 @@ class ContactData extends Component {
 						},
 						city: {
 							elementType: 'input',
+							label: 'Miasto',
 							elementConfig: {
 								type: 'text',
 								placeholder: 'Miasto'
@@ -72,6 +76,7 @@ class ContactData extends Component {
 						},
 						country: {
 							elementType: 'input',
+							label: 'Kraj',
 							elementConfig: {
 								type: 'text',
 								placeholder: 'Kraj'
@@ -85,6 +90,7 @@ class ContactData extends Component {
 						},
 						email: {
 							elementType: 'input',
+							label: 'E-mail',
 							elementConfig: {
 								type: 'email',
 								placeholder: 'Twój Email'
@@ -98,6 +104,7 @@ class ContactData extends Component {
 						},
 						deliveryMethod: {
 							elementType: 'select',
+							label: 'Rodzaj Dostawy',
 							elementConfig:{
 								options: [
 									{value: 'fastest', displayValue:'Najszybciej'},
@@ -209,6 +216,8 @@ class ContactData extends Component {
 									shouldValidate={formElement.config.validation}
 									touched={formElement.config.touched}
 									changed={(event) => this.inputChangeHandler(event, formElement.id)}
+									label={formElement.config.label}
+
 								/>
 							))
 					}
