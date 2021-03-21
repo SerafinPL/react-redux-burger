@@ -78,7 +78,7 @@ class Auth extends Component {
 		// 	formIsValid = (updatedControls[indetifier].valid && formIsValid);
 		// }
 		this.setState({controls: updatedControls/*, formIsValid: formIsValid*/});
-		console.log(this.state.controls)
+		
 	}
 
 	submitHandler = (event) => {
