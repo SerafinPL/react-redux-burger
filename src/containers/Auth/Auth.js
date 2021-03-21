@@ -32,13 +32,52 @@ class Auth extends Component {
 				value: '',
 				validation: {
 					required: true,
-					minLenght: 6
+					minLength: 6
 				},
 				valid: false,
 				touched: false
 			}
 		}
 	}
+
+	checkValidtity = (value, rules) => {
+		let isValid = true;
+		if (rules){
+			if (rules.required){
+				isValid = value.trim() !== '' && isValid;
+			}
+
+			if (rules.minLength){
+				isValid = value.length >= rules.minLength && isValid;
+			}
+
+			if (rules.maxLength){
+				isValid = value.length <= rules.maxLength && isValid;
+			}
+		} 
+		return isValid;
+	}
+
+	inputChangeHandler = (event, controlName) => {
+		
+		const updatedControls = {
+			...this.state.controls,
+			[controlName]: {
+				...this.state.controls[controlName],
+				value: event.target.value,
+				valid: this.checkValidtity(event.target.value, this.state.controls[controlName].validation),
+				touched: true
+			}
+
+		}; // wewnętrzne obiekty są wskaźnikami trzeba klonować dalej
+		// let formIsValid = true;
+		// for (let indetifier in updatedControls){
+		// 	formIsValid = (updatedControls[indetifier].valid && formIsValid);
+		// }
+		this.setState({controls: updatedControls/*, formIsValid: formIsValid*/});
+		console.log(this.state.controls)
+	}
+
 
 	render (){
 
@@ -49,7 +88,6 @@ class Auth extends Component {
 				config: this.state.controls[key]
 			});
 		}
-
 		const form = formElementArr.map(formElement => (
 			<Input 
 				key={formElement.id}
