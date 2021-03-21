@@ -62,6 +62,8 @@ const setIngredients = (state, action) => {
 	});
 };
 
+
+
 const reducer = (state = initialState, action) => {
 
 	switch (action.type){
@@ -76,8 +78,6 @@ const reducer = (state = initialState, action) => {
 			// };
 
 		case actionTypes.REMOVE_INGREDIENT: return removeIngredient(state, action);
-			
-
 			// return{
 			// 	...state,
 			// 	ingredients: {
@@ -88,8 +88,6 @@ const reducer = (state = initialState, action) => {
 			// };
 
 		case actionTypes.SET_INGREDIENTS: return setIngredients(state, action);
-
-			
 			// return{
 			// 	...state,
 			// 	//ingredients: action.ing, // kolejność z serwera
@@ -104,9 +102,7 @@ const reducer = (state = initialState, action) => {
 			// 	totalPrice: price
 			// };
 
-		case actionTypes.FETCH_INGREDIENTS_FAIL:
-			return updateObject(state, { error: true });
-
+		case actionTypes.FETCH_INGREDIENTS_FAIL: return updateObject(state, { error: true });
 			// return{
 			// 	...state,
 			// 	error: true
