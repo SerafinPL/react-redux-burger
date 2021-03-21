@@ -11,3 +11,7 @@ export const LOADING_START = 'LOADING_START';
 
 export const FECHT_ORDERS_SUCCESS = 'FECHT_ORDERS_SUCCESS';
 export const FECHT_ORDERS_FAIL = 'FECHT_ORDERS_FALI';
+
+export const AUTH_START = 'AUTH_START';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_FAIL = 'AUTH_FAIL';
