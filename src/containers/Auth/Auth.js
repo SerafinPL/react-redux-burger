@@ -81,6 +81,11 @@ class Auth extends Component {
 		console.log(this.state.controls)
 	}
 
+	submitHandler = (event) => {
+		event.preventDefault();
+		this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value);
+	}
+
 
 	render (){
 
@@ -108,7 +113,7 @@ class Auth extends Component {
 
 		return(
 			<div className={classes.Auth}>
-				<form>
+				<form onSubmit={(event) => this.submitHandler(event)}>
 					{form}
 					<Button btnType='Success'>ZAREJESTRUJ</Button>
 
@@ -121,7 +126,7 @@ class Auth extends Component {
 
 const mapDispatchToProps = dispatch => {
 	return{
-		onAuth: () => dispatch(actions.auth()),
+		onAuth: (email, password) => dispatch(actions.auth(email, password)),
 	};
 };
 
