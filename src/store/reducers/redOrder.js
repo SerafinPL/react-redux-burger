@@ -16,49 +16,65 @@ const reducer = (state = initState, action ) => {
 
 	switch (action.type){
 		case actionTypes.PURCHASE_INIT:
-			return{
-				...state,
-				purchased: false
-			};
+			return updateObject(state, { purchased: false });
+			// return{
+			// 	...state,
+			// 	purchased: false
+			// };
 		case actionTypes.PURCHASE_BURGER_SUCCESS :
 
-			//action.orderId
-			//action.orderData
-			const newOrder = {
-				id: action.orderId,
-				...action.orderData
-			}
-			return{
-				...state,
+			const newOrder = updateObject(action.orderData, {id: action.orderId});
+			// const newOrder = {
+			// 	id: action.orderId,
+			// 	...action.orderData
+			// }
+			return updateObject(state,{
 				loading: false,
 				orders: state.orders.concat(newOrder),
 				purchased: true
-			};
+			});
+			// return{
+			// 	...state,
+			// 	loading: false,
+			// 	orders: state.orders.concat(newOrder),
+			// 	purchased: true
+			// };
 		case actionTypes.PURCHASE_BURGER_FAIL :
-			return{
-				...state,
+			return updateObject(state, {
 				loading: false,
 				error: action.error
-			};
+			});
+			// return{
+			// 	...state,
+			// 	loading: false,
+			// 	error: action.error
+			// };
 		case actionTypes.LOADING_START :
-			return{
-				...state,
-				loading: true
-			};
+			return updateObject(state, { loading: true });
+			// return{
+			// 	...state,
+			// 	loading: true
+			// };
 		case actionTypes.FECHT_ORDERS_SUCCESS:
-			return{
-				...state,
+			return updateObject(state, {
 				loading: false,
 				orders: action.orders
-
-
-			};
+			});
+			// return{
+			// 	...state,
+			// 	loading: false,
+			// 	orders: action.orders
+			// };
 		case actionTypes.FECHT_ORDERS_FAIL:
-			return{
-				...state,
+			return updateObject(state, {
 				loading: false,
 				error: action.error
-			};
+			});
+			// return{
+			// 	...state,
+			// 	loading: false,
+			// 	error: action.error
+			// };
 		default: 
 		return state;
 	}//switch
