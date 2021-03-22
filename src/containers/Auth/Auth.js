@@ -40,7 +40,8 @@ class Auth extends Component {
 				valid: false,
 				touched: false
 			}
-		}
+		}, // controls:
+		isSignup: true
 	}
 
 	checkValidtity = (value, rules) => {
@@ -94,9 +95,14 @@ class Auth extends Component {
 
 	submitHandler = (event) => {
 		event.preventDefault();
-		this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value);
+		this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup);
 	}
 
+	switchAuthMod = () => {
+		this.setState(prevState => {
+			return {isSignup: !prevState.isSignup}
+		});
+	}
 
 	render (){
 
@@ -126,9 +132,13 @@ class Auth extends Component {
 			<div className={classes.Auth}>
 				<form onSubmit={(event) => this.submitHandler(event)}>
 					{form}
-					<Button btnType='Success'>ZAREJESTRUJ</Button>
-
+					<Button btnType='Success'>{this.state.isSignup ? 'ZAREJESTRUJ' : 'ZALOGUJ'}</Button>
 				</form>
+				<Button 
+					btnType='Danger'
+					clicked={this.switchAuthMod}>
+						Zmień na {this.state.isSignup ? 'Zaloguj' : 'Zarejestruj'}
+				</Button>
 			</div>
 		);
 	}
@@ -137,7 +147,7 @@ class Auth extends Component {
 
 const mapDispatchToProps = dispatch => {
 	return{
-		onAuth: (email, password) => dispatch(actions.auth(email, password)),
+		onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup)),
 	};
 };
 
