@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 import classes from './Auth.module.css';
 
@@ -113,7 +114,7 @@ class Auth extends Component {
 				config: this.state.controls[key]
 			});
 		}
-		const form = formElementArr.map(formElement => (
+		let form = formElementArr.map(formElement => (
 			<Input 
 				key={formElement.id}
 				elementType={formElement.config.elementType}
@@ -127,6 +128,10 @@ class Auth extends Component {
 			/>
 
 		));
+
+		if (this.props.redLoading) {
+			form = <Spinner/>;
+		};
 
 		return(
 			<div className={classes.Auth}>
@@ -144,6 +149,12 @@ class Auth extends Component {
 	}
 };
 
+const mapStateToProps = state => {
+	return {
+		redLoading: state.auth.loading,
+		redError: state.auth.error
+	};
+};
 
 const mapDispatchToProps = dispatch => {
 	return{
@@ -151,4 +162,4 @@ const mapDispatchToProps = dispatch => {
 	};
 };
 
-export default connect(null, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);
