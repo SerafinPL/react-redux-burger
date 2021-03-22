@@ -8,13 +8,15 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import burgerBuilderReducer from './store/reducers/redBurgerBuilder';
 import orderReducer from './store/reducers/redOrder';
+import authReducer from './store/reducers/redAuth';
 import thunk from 'redux-thunk';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
 	burgerBuilder: burgerBuilderReducer,
-	order: orderReducer
+	order: orderReducer,
+	auth : authReducer
 });
 
 const storeBox = createStore(rootReducer, composeEnhancers( applyMiddleware(thunk) ));
