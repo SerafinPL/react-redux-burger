@@ -133,10 +133,27 @@ class Auth extends Component {
 			form = <Spinner/>;
 		};
 
+		let errorMessage = null;
+		if (this.props.redError) {
+			if (this.props.redError.response !== undefined){
+
+				if (this.props.redError.response.data.error.message == 'EMAIL_NOT_FOUND') {
+					errorMessage = <p>E-mail nie odnaleziony</p>;
+				} else if (this.props.redError.response.data.error.message == 'INVALID_PASSWORD') {
+					errorMessage = <p>Błędne hasło</p>;
+				};
+
+			} else {
+				errorMessage = <p>{this.props.redError.message}</p>;	
+			};
+			
+		};
+
 		return(
 			<div className={classes.Auth}>
 				<form onSubmit={(event) => this.submitHandler(event)}>
 					{form}
+					{errorMessage}
 					<Button btnType='Success'>{this.state.isSignup ? 'ZAREJESTRUJ' : 'ZALOGUJ'}</Button>
 				</form>
 				<Button 
