@@ -137,11 +137,24 @@ class Auth extends Component {
 		if (this.props.redError) {
 			if (this.props.redError.response){
 
-				if (this.props.redError.response.data.error.message == 'EMAIL_NOT_FOUND') {
-					errorMessage = <p>E-mail nie odnaleziony</p>;
-				} else if (this.props.redError.response.data.error.message == 'INVALID_PASSWORD') {
-					errorMessage = <p>Błędne hasło</p>;
-				};
+				switch (this.props.redError.response.data.error.message ) {
+					case 'EMAIL_NOT_FOUND': errorMessage = <p>E-mail nie odnaleziony</p>;
+					break;
+					case 'INVALID_PASSWORD': errorMessage = <p>Błędne hasło</p>;
+					break;
+					case 'EMAIL_EXISTS': errorMessage = <p>Jest już konto na podany mail</p>;
+					break;
+					default: errorMessage = <p>{this.props.redError.response.data.error.message}</p>; 
+				}//switch
+
+				// if (this.props.redError.response.data.error.message == 'EMAIL_NOT_FOUND') {
+					
+				// } else if (this.props.redError.response.data.error.message == 'INVALID_PASSWORD') {
+				// 	errorMessage = <p>Błędne hasło</p>;
+				// } else {
+				// 	errorMessage = <p>{this.props.redError.response.data.error.message}</p>;
+				// 	console.log(this.props.redError.message);
+				// };
 
 			} else {
 				errorMessage = <p>{this.props.redError.message}</p>;	
