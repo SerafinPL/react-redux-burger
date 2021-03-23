@@ -147,15 +147,6 @@ class Auth extends Component {
 					default: errorMessage = <p>{this.props.redError.response.data.error.message}</p>; 
 				}//switch
 
-				// if (this.props.redError.response.data.error.message == 'EMAIL_NOT_FOUND') {
-					
-				// } else if (this.props.redError.response.data.error.message == 'INVALID_PASSWORD') {
-				// 	errorMessage = <p>Błędne hasło</p>;
-				// } else {
-				// 	errorMessage = <p>{this.props.redError.response.data.error.message}</p>;
-				// 	console.log(this.props.redError.message);
-				// };
-
 			} else {
 				errorMessage = <p>{this.props.redError.message}</p>;	
 			};
