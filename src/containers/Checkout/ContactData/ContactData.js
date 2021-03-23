@@ -140,7 +140,7 @@ class ContactData extends Component {
 				orderData: dataForm
 				
 			}
-			this.props.onOrderBurger(order);
+			this.props.onOrderBurger(order, this.props.ReduxToken);
 			// axios.post('/orders.json', order)
 			// 	.then(response => {
 			// 		this.setState({loading: false});
@@ -258,13 +258,14 @@ const mapStateToProps = state => {
 	return{
 		ReduxIngs: state.burgerBuilder.ingredients,
 		ReduxTotPrice: state.burgerBuilder.totalPrice,
-		ReduxLoading: state.order.loading
+		ReduxLoading: state.order.loading,
+		ReduxToken: state.auth.token
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return{
-		onOrderBurger: (orderData) => dispatch( actionCreators.purchaseBurgerStart(orderData) ),
+		onOrderBurger: (orderData, token) => dispatch( actionCreators.purchaseBurgerStart(orderData, token) ),
 		
 	};
 };

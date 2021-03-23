@@ -3,10 +3,10 @@ import * as actionTypes from './actionTypes';
 
 import axios from '../../axios-orders';
 
-export const purchaseBurgerStart = (orderData) => {
+export const purchaseBurgerStart = (orderData, token) => {
 	return dispatch => {
 			dispatch( startLoading() );
-			axios.post('/orders.json', orderData)
+			axios.post('/orders.json?auth=' + token, orderData)
 				.then(response => {
 					// this.setState({loading: false});
 					// this.props.history.push('/');
@@ -49,10 +49,10 @@ export const purchaseInit = () => {
 };
 
 
-export const fetchOrders = () => {
-	return dispatch => {
+export const fetchOrders = (token) => {
+	return (dispatch/*, getState*/)=> {
 		dispatch(startLoading());
-		axios.get('/orders.json')
+		axios.get('/orders.json?auth=' + token)
 			.then(response => {
 				const fatchedOrders = [];
 				for (let key in response.data){
