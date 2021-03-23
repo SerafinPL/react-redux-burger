@@ -135,7 +135,7 @@ class Auth extends Component {
 
 		let errorMessage = null;
 		if (this.props.redError) {
-			if (this.props.redError.response !== undefined){
+			if (this.props.redError.response){
 
 				if (this.props.redError.response.data.error.message == 'EMAIL_NOT_FOUND') {
 					errorMessage = <p>E-mail nie odnaleziony</p>;
