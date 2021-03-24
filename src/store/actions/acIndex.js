@@ -13,5 +13,6 @@ export {
 } from './acOrder';
 
 export {
-	auth
+	auth,
+	logout
 } from './acAuth';

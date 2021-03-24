@@ -4,7 +4,7 @@ import Layout from './hoc/Layout/Layout';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 import Checkout from './containers/Checkout/Checkout';
 import OrdersPage from './containers/OrdersPage/OrdersPage';
-import {Route,BrowserRouter, Switch} from 'react-router-dom';
+import {Route, BrowserRouter, Switch} from 'react-router-dom';
 import Auth from './containers/Auth/Auth';
 
 
@@ -31,6 +31,7 @@ const App = () => {
 		        	<Route path='/orders' exact component={OrdersPage} />
 		        	<Route path='/checkout' component={Checkout} />
 		        	<Route path='/auth' component={Auth} />
+		        	<Route path='/logout' component={Auth} />
 		        	<Route path='/' exact component={BurgerBuilder} />
 	        	</Switch>
         	</Layout>
