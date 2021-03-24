@@ -48,7 +48,7 @@ const App = (props) => {
 
 const mapDispatchToProps = dispatch => {
 	return{
-		authCheckState: () => dispatch(actions.authCheckState),
+		authCheckState: () => dispatch(actions.authCheckState()),
 
 	};
 };
