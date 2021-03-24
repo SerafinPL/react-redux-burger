@@ -8,17 +8,21 @@ import {Route, BrowserRouter, Switch} from 'react-router-dom';
 import Auth from './containers/Auth/Auth';
 import Logout from './containers/Auth/Logout/Logout';
 
+import {connect} from 'react-redux';
+import * as actions from './store/actions/acIndex';
 
-const App = () => {
+
+const App = (props) => {
 
 	const [testState, setTestState] = useState(true);
 
 	useEffect(() =>{	//it is componentDidMount
-		setTimeout(() => {
-			setTestState(false)
-		},5000);
+		props.authCheckState();
+		// setTimeout(() => {
+		// 	setTestState(false)
+		// },5000);
 		//return () => {} //componentWillUnmount
-	}, [] );  
+	});  
 
   return (
     <div >
@@ -42,4 +46,10 @@ const App = () => {
   );
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+	return{
+		authCheckState: () => dispatch(actions.authCheckState),
+
+	};
+};
+export default connect(null, mapDispatchToProps)(App);

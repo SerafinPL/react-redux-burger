@@ -15,5 +15,6 @@ export {
 export {
 	auth,
 	logout,
-	setAuthRedirectPath
+	setAuthRedirectPath,
+	authCheckState
 } from './acAuth';
