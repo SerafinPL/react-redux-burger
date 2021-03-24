@@ -35,7 +35,7 @@ class Layout extends Component {
 		return(
 		<Aux>
 			<Toolbar 
-				isAuth={this.state.ReduxIsAuth}
+				isAuth={this.props.ReduxIsAuth}
 				drawerToggleClicked={this.sideDrawerToggleHandler}/*opened={this.sideDrawerOpenedHandler}*/
 			/>
 			<SideDrawer 

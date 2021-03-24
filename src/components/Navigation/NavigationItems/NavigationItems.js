@@ -8,10 +8,15 @@ const navigationItems = (props) => (
 		<ul className={classes.NavigationItems}>
 			<NavigationItem link='/' exact>Stwórz Burgera</NavigationItem>
 			<NavigationItem link='/orders'>Zamówienia</NavigationItem>
-			<NavigationItem link='/auth'>Autoryzacja</NavigationItem>
+			{props.isAuthenticated 
+				? <NavigationItem link='/logout'>Wyloguj</NavigationItem>
+				: <NavigationItem link='/auth'>Zaloguj / Zarejestruj</NavigationItem>}
+			
 
 
 		</ul>
 	);
 
+
 export default navigationItems;
+
