@@ -1,15 +1,19 @@
-import React {useEffect}from 'react';
+import React, {useEffect}from 'react';
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 
 import * as actionCreators from '../../../store/actions/acIndex';
 
-const Logout = (props) => (
+const Logout = (props) => {
 
 	useEffect(() => {
 		props.onLogout();
 	});
 
+	return(
+		<Redirect to='/auth' />
 	);
+};
 
 
 const mapDispatchToProps = (dispatch) => {
@@ -18,4 +22,4 @@ const mapDispatchToProps = (dispatch) => {
 	};
 };
 
-export default Logout;
+export default connect(null, mapDispatchToProps)(Logout);

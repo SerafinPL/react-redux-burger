@@ -6,6 +6,7 @@ import Checkout from './containers/Checkout/Checkout';
 import OrdersPage from './containers/OrdersPage/OrdersPage';
 import {Route, BrowserRouter, Switch} from 'react-router-dom';
 import Auth from './containers/Auth/Auth';
+import Logout from './containers/Auth/Logout/Logout';
 
 
 const App = () => {
@@ -31,7 +32,7 @@ const App = () => {
 		        	<Route path='/orders' exact component={OrdersPage} />
 		        	<Route path='/checkout' component={Checkout} />
 		        	<Route path='/auth' component={Auth} />
-		        	<Route path='/logout' component={Auth} />
+		        	<Route path='/logout' component={Logout} />
 		        	<Route path='/' exact component={BurgerBuilder} />
 	        	</Switch>
         	</Layout>
