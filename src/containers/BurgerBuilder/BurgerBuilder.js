@@ -68,12 +68,17 @@ class BurgerBuilder extends Component {
 					}).reduce( (summ, el)=> {
 						return summ + el;
 					}, 0);
-		return (sum > 0 && this.props.ReduxIsAuth) ;
+		return (sum > 0) ;
 
 	}
 
 	purchaseHandler = () => {
-		this.setState({purchasing: true});
+		if (this.props.ReduxIsAuth){
+			this.setState({purchasing: true});	
+		} else {
+			this.props.history.push('/auth');
+		}
+		
 	}
 
 	purchaseCancelHandler = () => {
@@ -112,6 +117,7 @@ class BurgerBuilder extends Component {
 							ingredientRemove={this.props.ReduxOnIgredientRemoved}
 							disabled={disabledInfo}
 							purchasable={this.updatePurchaseState(this.props.ReduxIngs)}
+							isAuth={this.props.ReduxIsAuth}
 							price={this.props.ReduxTotPrice}
 							ordered={this.purchaseHandler}
 						/>

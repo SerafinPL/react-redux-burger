@@ -29,9 +29,9 @@ const bulidControls = (props) => (
 				)}
 			<button 
 				className={classes.OrderButton} 
-				disabled={!props.purchasable}
+				disabled={ !props.purchasable}
 				onClick={props.ordered}>
-				ZAMÓW
+				{props.isAuth ? 'ZAMÓW' : 'ZALOGUJ ABY ZAMÓWIĆ'}
 			</button>
 		</div>
 
