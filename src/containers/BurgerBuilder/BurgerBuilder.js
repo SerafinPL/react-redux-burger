@@ -73,9 +73,11 @@ class BurgerBuilder extends Component {
 	}
 
 	purchaseHandler = () => {
+
 		if (this.props.ReduxIsAuth){
 			this.setState({purchasing: true});	
 		} else {
+			this.props.ReduxChangePath('/checkout');
 			this.props.history.push('/auth');
 		}
 		
@@ -87,7 +89,7 @@ class BurgerBuilder extends Component {
 
 	
 	continueHandler = () => {
-		this.props.RedoxOnInitPurchase();
+		this.props.ReduxOnInitPurchase();
 		this.props.history.push('/checkout');
 
 	}
@@ -166,7 +168,8 @@ const mapDispachToProps = dispach => {
 		ReduxOnIgredientRemoved: (ingName) => dispach( actionCreators.removeIngerdient(ingName) ),
 		//{type: actionTypes.REMOVE_INGREDIENT, ingredientName: ingName})
 		ReduxSetIngredients: () => dispach( actionCreators.initIngridients() ),
-		RedoxOnInitPurchase: () => dispach( actionCreators.purchaseInit() )
+		ReduxOnInitPurchase: () => dispach( actionCreators.purchaseInit() ),
+		ReduxChangePath: (path) => dispach(actionCreators.setAuthRedirectPath(path))
 	};
 };
 

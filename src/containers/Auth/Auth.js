@@ -47,6 +47,12 @@ class Auth extends Component {
 		isSignup: true
 	}
 
+	componentDidMount() {
+		if (!this.props.redBurgerWasBuild && this.props.redAuthRedirectPath !== '/') {
+			this.props.ReduxSetAuthRedirectPath();
+		}
+	}
+
 	checkValidtity = (value, rules) => {
 		let isValid = true;
 		if (rules){
@@ -132,7 +138,7 @@ class Auth extends Component {
 		));
 
 		if (this.props.redAuth){
-			form = <Redirect to='/' />;
+			form = <Redirect to={this.props.redPathToRedirect} />;
 		};
 
 		if (this.props.redLoading) {
@@ -180,13 +186,17 @@ const mapStateToProps = state => {
 	return {
 		redLoading: state.auth.loading,
 		redError: state.auth.error,
-		redAuth: state.auth.token !== null
+		redAuth: state.auth.token !== null,
+		redPathToRedirect: state.auth.pathToRedirect,
+		redBurgerWasBuild: state.burgerBuilder.itWasBuild,
+		redAuthRedirectPath: state.auth.pathToRedirect
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return{
 		onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup)),
+		ReduxSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
 	};
 };
 
