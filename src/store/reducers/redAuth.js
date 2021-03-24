@@ -6,7 +6,8 @@ const initState = {
 	token: null,
 	userId: null,
 	error: null,
-	loading: false
+	loading: false,
+	pathToRedirect: '/'
 };
 
 const authSuccess = (state, action) => {
