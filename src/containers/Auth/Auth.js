@@ -9,6 +9,8 @@ import classes from './Auth.module.css';
 import * as actions from '../../store/actions/acIndex';
 import {connect} from 'react-redux';
 
+import {Redirect} from 'react-router-dom';
+
 class Auth extends Component {
 
 	state = {
@@ -129,6 +131,10 @@ class Auth extends Component {
 
 		));
 
+		if (this.props.redAuth){
+			form = <Redirect to='/' />;
+		};
+
 		if (this.props.redLoading) {
 			form = <Spinner/>;
 		};
@@ -173,7 +179,8 @@ class Auth extends Component {
 const mapStateToProps = state => {
 	return {
 		redLoading: state.auth.loading,
-		redError: state.auth.error
+		redError: state.auth.error,
+		redAuth: state.auth.token !== null
 	};
 };
 

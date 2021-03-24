@@ -68,7 +68,7 @@ class BurgerBuilder extends Component {
 					}).reduce( (summ, el)=> {
 						return summ + el;
 					}, 0);
-		return sum > 0 ;
+		return (sum > 0 && this.props.ReduxIsAuth) ;
 
 	}
 
@@ -146,7 +146,9 @@ const mapStateToProps = state => {
 	return{
 		ReduxIngs: state.burgerBuilder.ingredients,
 		ReduxTotPrice: state.burgerBuilder.totalPrice,
-		ReduxError: state.burgerBuilder.error
+		ReduxError: state.burgerBuilder.error,
+		ReduxIsAuth: state.auth.token !== null,
+
 	};
 };
 
