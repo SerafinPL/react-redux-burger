@@ -25,9 +25,9 @@ const storeBox = createStore(rootReducer, composeEnhancers( applyMiddleware(thun
 
 ReactDOM.render(
   <Provider store={storeBox}>
-  	<BrowserRouter>
+  	
     	<App />
-    </BrowserRouter>
+    
   </Provider>,
   document.getElementById('root')
 );

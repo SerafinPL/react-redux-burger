@@ -52,4 +52,4 @@ const mapDispatchToProps = dispatch => {
 
 	};
 };
-export default withRouter(connect(null, mapDispatchToProps)(App)); // withRouter for route problems with connect
+export default /*withRouter(*/connect(null, mapDispatchToProps)(App)/*)*/; // withRouter for route problems with connect
