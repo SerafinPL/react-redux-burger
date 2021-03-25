@@ -17,12 +17,8 @@ import * as actionCreators from '../../store/actions/acIndex';
 
 
 
-const BurgerBuilder = (props) =>/*extends Component*/ {
-	// constructor(props){
-	// 	super(props)
-
-	// 	this.state = {...}
-	// }
+const BurgerBuilder = (props) => {
+	
 	useEffect(() =>{	
 		if (!props.ReduxWasBuild){
 			props.ReduxSetIngredients();
