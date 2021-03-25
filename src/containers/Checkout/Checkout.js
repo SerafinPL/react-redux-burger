@@ -20,7 +20,7 @@ const Checkout = (props) => {
 		props.history.replace('/checkout/contact-data');
 	}
 
-	let summary = <Redirect to='/' />
+	let summary = <Redirect to='/' />;
 
 	if (props.ReduxIngs) {
 

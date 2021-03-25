@@ -8,7 +8,7 @@ const Logout = (props) => {
 
 	useEffect(() => {
 		props.onLogout();
-		props.ReduxSetIngredients();
+		//props.ReduxSetIngredients();
 	});
 
 	return(

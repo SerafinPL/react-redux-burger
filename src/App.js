@@ -17,7 +17,9 @@ const App = (props) => {
 	const [testState, setTestState] = useState(true);
 
 	useEffect(() =>{	//it is componentDidMount
-		props.authCheckState();
+		if (!props.RedAuth) {
+			props.authCheckState();
+		}
 		// setTimeout(() => {
 		// 	setTestState(false)
 		// },5000);
@@ -29,6 +31,7 @@ const App = (props) => {
 				<Route path='/auth' component={Auth} />
 	        	<Route path='/' exact component={BurgerBuilder} />
 	        	<Redirect to='/' />
+	        	
 	        </Switch>
 		);
 
@@ -38,7 +41,7 @@ const App = (props) => {
 				<Route path='/orders' exact component={OrdersPage} /> 
 	        	<Route path='/checkout' component={Checkout} />
 	        	<Route path='/logout' component={Logout} />
-	        	<Route path='/' exact component={BurgerBuilder} />
+	        	<Route path='/' component={BurgerBuilder} />
 	        	<Redirect to='/' />
 	        </Switch>
 		);

@@ -48,7 +48,7 @@ class Auth extends Component {
 	}
 
 	componentDidMount() {
-		if (!this.props.redBurgerWasBuild && this.props.redAuthRedirectPath !== '/') {
+		if (!this.props.redBurgerWasBuild && this.props.redPathToRedirect !== '/') {
 			this.props.ReduxSetAuthRedirectPath();
 		}
 	}
@@ -105,6 +105,8 @@ class Auth extends Component {
 	submitHandler = (event) => {
 		event.preventDefault();
 		this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup);
+
+
 	}
 
 	switchAuthMod = () => {
@@ -137,8 +139,9 @@ class Auth extends Component {
 
 		));
 
+		let authRedirect = null;
 		if (this.props.redAuth){
-			form = <Redirect to={this.props.redPathToRedirect} />;
+			authRedirect = <Redirect to={this.props.redPathToRedirect} />;
 		};
 
 		if (this.props.redLoading) {
@@ -167,9 +170,11 @@ class Auth extends Component {
 
 		return(
 			<div className={classes.Auth}>
+				{authRedirect}
+				{errorMessage}
 				<form onSubmit={(event) => this.submitHandler(event)}>
 					{form}
-					{errorMessage}
+					
 					<Button btnType='Success'>{this.state.isSignup ? 'ZAREJESTRUJ' : 'ZALOGUJ'}</Button>
 				</form>
 				<Button 
@@ -189,7 +194,7 @@ const mapStateToProps = state => {
 		redAuth: state.auth.token !== null,
 		redPathToRedirect: state.auth.pathToRedirect,
 		redBurgerWasBuild: state.burgerBuilder.itWasBuild,
-		redAuthRedirectPath: state.auth.pathToRedirect
+		
 	};
 };
 
