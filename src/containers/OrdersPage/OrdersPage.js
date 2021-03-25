@@ -18,7 +18,7 @@ const OrdersPage = (props) => {
 
 	 useEffect(() => {
 
-		props.onFetchOrders(props.ReduxToken);
+		props.onFetchOrders(props.ReduxToken, props.ReduxUserId);
 	// 	axios.get('/orders.json')
 	// 		.then(response => {
 	// 			const fatchedOrders = [];
@@ -97,13 +97,14 @@ const mapStateToProps = state => {
 		ReduxError: state.order.error,
 		ReduxLoading: state.order.loading,
 		ReduxOrders: state.order.orders,
-		ReduxToken: state.auth.token
+		ReduxToken: state.auth.token,
+		ReduxUserId: state.auth.userId
 	};
 };
 
 const mapDispachToProps = dispach => {
 	return{
-		onFetchOrders: (token) => dispach(actionCreators.fetchOrders(token)) 
+		onFetchOrders: (token, userId) => dispach(actionCreators.fetchOrders(token, userId)) 
 	};
 };
 

@@ -6,6 +6,7 @@ import axios from '../../axios-orders';
 export const purchaseBurgerStart = (orderData, token) => {
 	return dispatch => {
 			dispatch( startLoading() );
+
 			axios.post('/orders.json?auth=' + token, orderData)
 				.then(response => {
 					// this.setState({loading: false});
@@ -49,10 +50,11 @@ export const purchaseInit = () => {
 };
 
 
-export const fetchOrders = (token) => {
+export const fetchOrders = (token, userId) => {
 	return (dispatch/*, getState*/)=> {
 		dispatch(startLoading());
-		axios.get('/orders.json?auth=' + token)
+		const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
+		axios.get('/orders.json' + queryParams)
 			.then(response => {
 				const fatchedOrders = [];
 				for (let key in response.data){
