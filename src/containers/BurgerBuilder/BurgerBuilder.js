@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useState, useEffect} from 'react';
 
 
 import Aux from '../../hoc/Aux/Aux';
@@ -17,14 +17,19 @@ import * as actionCreators from '../../store/actions/acIndex';
 
 
 
-class BurgerBuilder extends Component {
+const BurgerBuilder = (props) =>/*extends Component*/ {
 	// constructor(props){
 	// 	super(props)
 
 	// 	this.state = {...}
 	// }
-	componentDidMount() {
-			this.props.ReduxSetIngredients();
+	useEffect(() =>{	
+		if (!props.ReduxWasBuild){
+			props.ReduxSetIngredients();
+		}
+	},[]);
+	// componentDidMount() {
+	// 		this.props.ReduxSetIngredients();
 		// axios.get('/ingredients.json')
 		// .then(response => {
 		// 		this.setState({ingredients: response.data});
@@ -48,19 +53,20 @@ class BurgerBuilder extends Component {
 		// .catch(error => {
 		// 	this.setState({error: true});
 		// });
-	} //componentDidMount()
+	//} //componentDidMount()
 
-	state = {
-		//ingredients: null,
-		//totalPrice: 4,
-		//purchasable: false,
-		purchasing: false,
-		//loading: false,
-		//error: false
-	}
+	// state = {
+	// 	purchasing: false,
+	// 	//ingredients: null,
+	// 	//totalPrice: 4,
+	// 	//purchasable: false,
+		
+	// 	//loading: false,
+	// 	//error: false
+	// }
+	const [purchasing, purchasingSet] = useState(false);
 
-
-	updatePurchaseState(ingredients) {
+	const updatePurchaseState = (ingredients) => {
 		
 		const sum = Object.keys(ingredients)
 					.map(igKey => {
@@ -72,32 +78,34 @@ class BurgerBuilder extends Component {
 
 	}
 
-	purchaseHandler = () => {
-
-		if (this.props.ReduxIsAuth){
-			this.setState({purchasing: true});	
+	const purchaseHandler = () => {
+		let pur = false;
+		if (props.ReduxIsAuth){
+			pur = true;
+			//this.setState({purchasing: true});	
 		} else {
-			this.props.ReduxChangePath('/checkout');
-			this.props.history.push('/auth');
+			props.ReduxChangePath('/checkout');
+			props.history.push('/auth');
 		}
-		
+		purchasingSet(pur);
 	}
 
-	purchaseCancelHandler = () => {
-		this.setState({purchasing: false});
+	const purchaseCancelHandler = () => {
+		//this.setState({purchasing: false});
+		purchasingSet(false);
 	}
 
 	
-	continueHandler = () => {
-		this.props.ReduxOnInitPurchase();
-		this.props.history.push('/checkout');
+	const continueHandler = () => {
+		props.ReduxOnInitPurchase();
+		props.history.push('/checkout');
 
 	}
 
-	render(){
+	//render(){
 
 		const disabledInfo = {
-			...this.props.ReduxIngs
+			...props.ReduxIngs
 		};
 
 		for (let key in disabledInfo){
@@ -106,30 +114,30 @@ class BurgerBuilder extends Component {
 
 		let orderSummary = null; 
 
-		let burger = this.props.ReduxError ? <p style={{textAlign: 'center'}}>Składników nie da się załadować</p> : <Spinner />
+		let burger = props.ReduxError ? <p style={{textAlign: 'center'}}>Składników nie da się załadować</p> : <Spinner />
 
-		if (this.props.ReduxIngs){
+		if (props.ReduxIngs){
 	
 
 			burger =(
 				<Aux>
-					<Burger ingredients={this.props.ReduxIngs}/>
+					<Burger ingredients={props.ReduxIngs}/>
 						<BuildControls 
-							ingredientAdded={this.props.ReduxOnIgredientAdded}
-							ingredientRemove={this.props.ReduxOnIgredientRemoved}
+							ingredientAdded={props.ReduxOnIgredientAdded}
+							ingredientRemove={props.ReduxOnIgredientRemoved}
 							disabled={disabledInfo}
-							purchasable={this.updatePurchaseState(this.props.ReduxIngs)}
-							isAuth={this.props.ReduxIsAuth}
-							price={this.props.ReduxTotPrice}
-							ordered={this.purchaseHandler}
+							purchasable={updatePurchaseState(/*this.*/props.ReduxIngs)}
+							isAuth={props.ReduxIsAuth}
+							price={props.ReduxTotPrice}
+							ordered={purchaseHandler}
 						/>
 				</Aux>
 			);
 			orderSummary = <OrderSummary 
-							ingredients={this.props.ReduxIngs}
-							purchaseCanceled={this.purchaseCancelHandler}
-							purchaseContinue={this.continueHandler}
-							price={this.props.ReduxTotPrice}
+							ingredients={props.ReduxIngs}
+							purchaseCanceled={purchaseCancelHandler}
+							purchaseContinue={continueHandler}
+							price={props.ReduxTotPrice}
 						/>;
 
 				
@@ -141,13 +149,13 @@ class BurgerBuilder extends Component {
 
 		return(
 				<Aux>
-					<Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
+					<Modal show={purchasing} modalClosed={purchaseCancelHandler}>
 						{orderSummary}
 					</Modal>
 					{burger}
 				</Aux>
 			);
-	}
+	//}
 }
 
 const mapStateToProps = state => {
@@ -156,6 +164,7 @@ const mapStateToProps = state => {
 		ReduxTotPrice: state.burgerBuilder.totalPrice,
 		ReduxError: state.burgerBuilder.error,
 		ReduxIsAuth: state.auth.token !== null,
+		ReduxWasBuild: state.burgerBuilder.itWasBuild
 
 	};
 };
