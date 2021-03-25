@@ -33,7 +33,7 @@ const App = (props) => {
 		      		
 		        	{/*<BurgerBuilder/>*/}
 		        	{/*<Checkout />*/}
-		        	<Route path='/orders' exact component={OrdersPage} />
+		        	{props.RedAuth ? <Route path='/orders' exact component={OrdersPage} /> : null}
 		        	<Route path='/checkout' component={Checkout} />
 		        	<Route path='/auth' component={Auth} />
 		        	<Route path='/logout' component={Logout} />
@@ -46,10 +46,16 @@ const App = (props) => {
   );
 }
 
+const mapStateToProps = state => {
+	return{
+		RedAuth: state.auth.token !== null
+	};
+};
+
 const mapDispatchToProps = dispatch => {
 	return{
 		authCheckState: () => dispatch(actions.authCheckState()),
 
 	};
 };
-export default /*withRouter(*/connect(null, mapDispatchToProps)(App)/*)*/; // withRouter for route problems with connect
+export default /*withRouter(*/connect(mapStateToProps, mapDispatchToProps)(App)/*)*/; // withRouter for route problems with connect
