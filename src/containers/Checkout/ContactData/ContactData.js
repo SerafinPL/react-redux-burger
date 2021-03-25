@@ -142,7 +142,7 @@ class ContactData extends Component {
 				
 			}
 			this.props.onOrderBurger(order, this.props.ReduxToken);
-			//this.props.ReduxSetIngredients();
+			this.props.ReduxSetIngredients();
 			// axios.post('/orders.json', order)
 			// 	.then(response => {
 			// 		this.setState({loading: false});
