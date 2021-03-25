@@ -24,22 +24,31 @@ const App = (props) => {
 		//return () => {} //componentWillUnmount
 	});  
 
+	let route = (
+			<Switch>
+				<Route path='/auth' component={Auth} />
+	        	<Route path='/' exact component={BurgerBuilder} />
+	        </Switch>
+		);
+
+	if (props.RedAuth) {
+		route = (
+			<Switch>
+				<Route path='/orders' exact component={OrdersPage} /> 
+	        	<Route path='/checkout' component={Checkout} />
+	        	<Route path='/auth' component={Auth} />
+	        	<Route path='/logout' component={Logout} />
+	        	<Route path='/' exact component={BurgerBuilder} />
+	        </Switch>
+		);
+	}
+
   return (
     <div >
       	<BrowserRouter>
 	      	<Layout>
-      		
-	      		<Switch>
-		      		
-		        	{/*<BurgerBuilder/>*/}
-		        	{/*<Checkout />*/}
-		        	{props.RedAuth ? <Route path='/orders' exact component={OrdersPage} /> : null}
-		        	<Route path='/checkout' component={Checkout} />
-		        	<Route path='/auth' component={Auth} />
-		        	<Route path='/logout' component={Logout} />
-		        	<Route path='/' exact component={BurgerBuilder} />
-	        	</Switch>
-        	</Layout>
+      		  	{route}
+	        </Layout>
         </BrowserRouter>
       
     </div>
