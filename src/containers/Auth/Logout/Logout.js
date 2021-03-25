@@ -8,6 +8,7 @@ const Logout = (props) => {
 
 	useEffect(() => {
 		props.onLogout();
+		props.ReduxSetIngredients();
 	});
 
 	return(
@@ -19,6 +20,7 @@ const Logout = (props) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onLogout: () => dispatch(actionCreators.logout()),
+		ReduxSetIngredients: () => dispatch( actionCreators.initIngridients() ),
 	};
 };
 

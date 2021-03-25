@@ -165,16 +165,16 @@ const mapStateToProps = state => {
 	};
 };
 
-const mapDispachToProps = dispach => {
+const mapDispachToProps = dispatch => {
 	return{
 		
-		ReduxOnIgredientAdded: (ingName) => dispach( actionCreators.addIngerdient(ingName) ),
+		ReduxOnIgredientAdded: (ingName) => dispatch( actionCreators.addIngerdient(ingName) ),
 		//{type: actionTypes.ADD_INGREDIENT, ingredientName: ingName}),
-		ReduxOnIgredientRemoved: (ingName) => dispach( actionCreators.removeIngerdient(ingName) ),
+		ReduxOnIgredientRemoved: (ingName) => dispatch( actionCreators.removeIngerdient(ingName) ),
 		//{type: actionTypes.REMOVE_INGREDIENT, ingredientName: ingName})
-		ReduxSetIngredients: () => dispach( actionCreators.initIngridients() ),
-		ReduxOnInitPurchase: () => dispach( actionCreators.purchaseInit() ),
-		ReduxChangePath: (path) => dispach(actionCreators.setAuthRedirectPath(path))
+		ReduxSetIngredients: () => dispatch( actionCreators.initIngridients() ),
+		ReduxOnInitPurchase: () => dispatch( actionCreators.purchaseInit() ),
+		ReduxChangePath: (path) => dispatch(actionCreators.setAuthRedirectPath(path))
 	};
 };
 
