@@ -11,6 +11,8 @@ import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import {connect} from 'react-redux';
 import * as actionCreators from '../../../store/actions/acIndex';
 
+import {updateObject} from '../../../shared/utility';
+
 class ContactData extends Component {
 
 	state ={
@@ -183,17 +185,17 @@ class ContactData extends Component {
 
 	inputChangeHandler = (event, id) => {
 		
-		const updatedOrderForm = {
-			...this.state.orderForm
-		}; // wewnętrzne obiekty są wskaźnikami trzeba klonować dalej
-		const updatedFormElement = {
-			...updatedOrderForm[id]
-		};
-		updatedFormElement.value = event.target.value;
+		 // wewnętrzne obiekty są wskaźnikami trzeba klonować dalej
+		 const updatedFormElement = updateObject(this.state.orderForm[id], {
+		 	value: event.target.value,
+		 	valid: this.checkValidtity(event.target.value, this.state.orderForm[id].validation),
+		 	touched: true
+		 });
 
-		updatedFormElement.valid = this.checkValidtity(updatedFormElement.value, updatedFormElement.validation);
-		updatedFormElement.touched = true;
-		updatedOrderForm[id] = updatedFormElement;
+		const updatedOrderForm = updateObject(this.state.orderForm, {
+			[id]: updatedFormElement
+		});
+		
 
 		let formIsValid = true;
 		for (let indetifier in updatedOrderForm){
