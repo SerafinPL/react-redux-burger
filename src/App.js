@@ -49,42 +49,45 @@ const App = (props) => {
 
 	if (props.RedAuth) {
 		route = (
+		<Suspense fallback={<Spinner/>}>
 			<Switch>
-				<Route path='/orders' exact //component={OrdersPage} 
-					render={() => (
-							<Suspense fallback={<Spinner/>}>
-								<OrdersPage/>
-							</Suspense>
-						)}
+				
+				<Route path='/orders' exact component={OrdersPage} 
+					// render={() => (
+					// 		<Suspense fallback={<Spinner/>}>
+					// 			<OrdersPage/>
+					// 		</Suspense>
+					// 	)}
 				/>
 
-	        	<Route path='/checkout' //component={Checkout} 
-	        		render={() => (
-							<Suspense fallback={<Spinner/>}>
-								<Checkout/>
-							</Suspense>
-						)}
+	        	<Route path='/checkout' component={Checkout} 
+	     //    		render={() => (
+						// 	<Suspense fallback={<Spinner/>}>
+						// 		<Checkout/>
+						// 	</Suspense>
+						// )}
 	        	/>
-	        	<Route path='/logout' //component={Logout} 
-	        		render={() => (
-	        				<Suspense fallback={<Spinner/>}>
-	        					<Logout/>
-	        				</Suspense>
-	        			)}
+	        	<Route path='/logout' component={Logout} 
+	        		// render={() => (
+	        		// 		<Suspense fallback={<Spinner/>}>
+	        		// 			<Logout/>
+	        		// 		</Suspense>
+	        		// 	)}
 
 	        	/>
 	        	
-	        	<Route path='/auth' //component={Auth} 
-					render={
-						() => (
-							<Suspense fallback={<Spinner/>}>
-								<Auth/>
-							</Suspense>	
-						)}
+	        	<Route path='/auth' component={Auth} 
+					// render={
+					// 	() => (
+					// 		<Suspense fallback={<Spinner/>}>
+					// 			<Auth/>
+					// 		</Suspense>	
+					// 	)}
 				/>
 	        	<Route path='/' component={BurgerBuilder} />
 	        	<Redirect to='/' />
 	        </Switch>
+	    </Suspense>
 		);
 	}
 
