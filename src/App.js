@@ -30,7 +30,7 @@ const App = (props) => {
 		// 	setTestState(false)
 		// },5000);
 		//return () => {} //componentWillUnmount
-	});  
+	}, []);  
 
 	let route = (
 			<Switch>
