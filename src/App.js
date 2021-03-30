@@ -1,16 +1,22 @@
-import React, { useState, useEffect} from 'react' ;
+import React, { useState, useEffect, Suspense} from 'react' ;
 
 import Layout from './hoc/Layout/Layout';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
-import Checkout from './containers/Checkout/Checkout';
-import OrdersPage from './containers/OrdersPage/OrdersPage';
+
+
 import {Route, BrowserRouter, Switch, withRouter, Redirect} from 'react-router-dom';
-import Auth from './containers/Auth/Auth';
-import Logout from './containers/Auth/Logout/Logout';
+
+
 
 import {connect} from 'react-redux';
 import * as actions from './store/actions/acIndex';
 
+import Spinner from './components/UI/Spinner/Spinner';
+
+const Auth = React.lazy( () => import('./containers/Auth/Auth') );
+const OrdersPage = React.lazy( () => import('./containers/OrdersPage/OrdersPage') );
+const Checkout = React.lazy( () => import('./containers/Checkout/Checkout') );
+const Logout = React.lazy( () => import('./containers/Auth/Logout/Logout') );
 
 const App = (props) => {
 
@@ -28,7 +34,13 @@ const App = (props) => {
 
 	let route = (
 			<Switch>
-				<Route path='/auth' component={Auth} />
+				<Route path='/auth' //component={Auth} 
+					render={() => (
+							<Suspense fallback={<Spinner/>}>
+								<Auth/>
+							</Suspense>	
+						)}
+				/>
 	        	<Route path='/' exact component={BurgerBuilder} />
 	        	<Redirect to='/' />
 	        	
@@ -38,10 +50,38 @@ const App = (props) => {
 	if (props.RedAuth) {
 		route = (
 			<Switch>
-				<Route path='/orders' exact component={OrdersPage} /> 
-	        	<Route path='/checkout' component={Checkout} />
-	        	<Route path='/logout' component={Logout} />
-	        	<Route path='/auth' component={Auth} />
+				<Route path='/orders' exact //component={OrdersPage} 
+					render={() => (
+							<Suspense fallback={<Spinner/>}>
+								<OrdersPage/>
+							</Suspense>
+						)}
+				/>
+
+	        	<Route path='/checkout' //component={Checkout} 
+	        		render={() => (
+							<Suspense fallback={<Spinner/>}>
+								<Checkout/>
+							</Suspense>
+						)}
+	        	/>
+	        	<Route path='/logout' //component={Logout} 
+	        		render={() => (
+	        				<Suspense fallback={<Spinner/>}>
+	        					<Logout/>
+	        				</Suspense>
+	        			)}
+
+	        	/>
+	        	
+	        	<Route path='/auth' //component={Auth} 
+					render={
+						() => (
+							<Suspense fallback={<Spinner/>}>
+								<Auth/>
+							</Suspense>	
+						)}
+				/>
 	        	<Route path='/' component={BurgerBuilder} />
 	        	<Redirect to='/' />
 	        </Switch>
