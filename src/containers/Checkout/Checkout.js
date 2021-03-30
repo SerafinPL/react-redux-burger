@@ -5,7 +5,7 @@ import ContactData from './ContactData/ContactData';
 import {Route, Redirect} from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import * as actionsCreators from '../../store/actions/acIndex';
+
 
 
 const Checkout = (props) => {
