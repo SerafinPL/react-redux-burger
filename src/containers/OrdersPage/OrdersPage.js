@@ -1,4 +1,4 @@
-import React, {useEffect, useState, Component} from 'react';
+import React, {useEffect} from 'react';
 
 import Order from '../../components/Order/Order';
 import axios from '../../axios-orders';
@@ -37,7 +37,7 @@ const OrdersPage = (props) => {
 	// 			loadingSetHook(false);
 	// 		});
 
-	 },[]); 
+	 },[]); //like componentDidMount
 	// CLASS BASE
 	// state ={
 	// 	orders: [],

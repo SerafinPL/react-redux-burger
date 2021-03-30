@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect} from 'react' ;
+import React, { useState, useEffect} from 'react' ;
 
 import Layout from './hoc/Layout/Layout';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
@@ -14,7 +14,7 @@ import * as actions from './store/actions/acIndex';
 
 const App = (props) => {
 
-	const [testState, setTestState] = useState(true);
+	//const [testState, setTestState] = useState(true);
 
 	useEffect(() =>{	//it is componentDidMount
 		if (!props.RedAuth) {

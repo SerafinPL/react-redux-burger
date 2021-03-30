@@ -9,9 +9,7 @@ import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 
 class Layout extends Component {
-	constructor(props){
-		super(props);
-	}
+	
 
 	state ={
 		showSideDrawer: false

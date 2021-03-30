@@ -1,4 +1,4 @@
-import React, {Component, useState, useEffect} from 'react';
+import React, { useState, useEffect} from 'react';
 
 
 import Aux from '../../hoc/Aux/Aux';
@@ -23,7 +23,7 @@ const BurgerBuilder = (props) => {
 		if (!props.ReduxWasBuild){
 			props.ReduxSetIngredients();
 		}
-	},[]);
+	},[]); // like componentDidMount
 	// componentDidMount() {
 	// 		this.props.ReduxSetIngredients();
 		// axios.get('/ingredients.json')

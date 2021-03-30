@@ -120,7 +120,7 @@ class Auth extends Component {
 				shouldValidate={formElement.config.validation}
 				touched={formElement.config.touched}
 				changed={(event) => this.inputChangeHandler(event, formElement.id)}
-				label={formElement.config.elementConfig.type == 'email' ? 'E-mail' : 'Hasło'}
+				label={formElement.config.elementConfig.type === 'email' ? 'E-mail' : 'Hasło'}
 			/>
 
 		));

@@ -52,7 +52,7 @@ const Input = (props) => {
 
 		let validationErrorMessage = null;
 		if (props.invalid && props.touched) {
-			validationErrorMessage = <p className={classes.Error}>Wprowadź poprawne dane warość {props.elementConfig.type == 'password' ? 'hasła' : props.value} jest nieprawidłowa</p>
+			validationErrorMessage = <p className={classes.Error}>Wprowadź poprawne dane warość {props.elementConfig.type === 'password' ? 'hasła' : props.value} jest nieprawidłowa</p>
 		}
 
 		return(
