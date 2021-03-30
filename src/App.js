@@ -41,6 +41,7 @@ const App = (props) => {
 				<Route path='/orders' exact component={OrdersPage} /> 
 	        	<Route path='/checkout' component={Checkout} />
 	        	<Route path='/logout' component={Logout} />
+	        	<Route path='/auth' component={Auth} />
 	        	<Route path='/' component={BurgerBuilder} />
 	        	<Redirect to='/' />
 	        </Switch>
